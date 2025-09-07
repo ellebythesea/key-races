@@ -17,7 +17,12 @@ def send_email(
     body_text: str,
 ):
     host = _get(smtp_cfg.get("host"), os.getenv("SMTP_HOST"))
-    port = int(_get(str(smtp_cfg.get("port")), os.getenv("SMTP_PORT") or "587"))
+    # Robustly coerce port, default to 587 if missing/invalid
+    port_raw = smtp_cfg.get("port") or os.getenv("SMTP_PORT") or 587
+    try:
+        port = int(port_raw) if str(port_raw).lower() != "none" else 587
+    except Exception:
+        port = 587
     user = _get(smtp_cfg.get("user"), os.getenv("SMTP_USER"))
     password = _get(smtp_cfg.get("password"), os.getenv("SMTP_PASSWORD"))
     sender = _get(smtp_cfg.get("from"), os.getenv("SMTP_FROM"))
@@ -36,4 +41,3 @@ def send_email(
             server.starttls()
         server.login(user, password)
         server.sendmail(sender, recipients, msg.as_string())
-

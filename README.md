@@ -45,13 +45,11 @@ GitHub Pages (Online Reports)
 
 3) Optional: customize the schedule or output path in `.github/workflows/weekly.yml`.
 
-GitHub Actions (Weekly Email)
+Email (optional)
 
-1) Add repository secrets (Settings → Secrets and variables → Actions → New repository secret):
-   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`
-   - `RECIPIENTS` (comma‑separated emails) or maintain in `config.yaml`.
-
-2) The workflow `.github/workflows/weekly.yml` runs every Monday at 13:00 UTC. It builds/commits the static site (in `docs/`) and sends the email via SMTP.
+The workflow currently only publishes the static site weekly. If you later want emails:
+- Add repository secrets: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`, `RECIPIENTS`.
+- Re-enable the "Send email" step in `.github/workflows/weekly.yml` (the block that was removed).
 
 Extending Targets
 
