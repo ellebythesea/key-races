@@ -1,0 +1,28 @@
+# Configuration for key-races weekly reporter
+
+recipients:
+  - you@example.com
+
+smtp:
+  host: ${SMTP_HOST}
+  port: ${SMTP_PORT}
+  user: ${SMTP_USER}
+  password: ${SMTP_PASSWORD}
+  from: ${SMTP_FROM}
+  # If your SMTP server needs STARTTLS
+  starttls: true
+
+filters:
+  # States to prioritize (empty means all from targets)
+  states: [AZ, GA, MI, PA, WI, NV, NC]
+  # Offices to include: PRESIDENT, SENATE, GOVERNOR, HOUSE, STATE
+  offices: [PRESIDENT, SENATE, GOVERNOR, HOUSE]
+  # Only include elections occurring within this many days from run date
+  lookahead_days: 400
+
+behavior:
+  # Maximum pages to fetch per run to keep things light
+  max_pages: 40
+  # Delay between requests (seconds) to be polite
+  request_delay_seconds: 1.0
+

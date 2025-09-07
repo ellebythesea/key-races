@@ -1,0 +1,41 @@
+Key Races Weekly Report
+
+- US PRESIDENT (2028)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/United%20States%20presidential%20election,%202028
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+US%20PRESIDENT%202028
+    - https://www.google.com/search?q=US%20Secretary%20of%20State%20elections%20calendar%202028
+    - https://www.google.com/search?q=US%20PRESIDENT%202028%20official%20candidate%20list
+
+- AZ SENATE (2026)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20Senate%20election%20in%20Arizona
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+AZ%20SENATE%202026
+    - https://www.google.com/search?q=AZ%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=AZ%20SENATE%202026%20official%20candidate%20list
+
+- PA SENATE (2028)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2028%20United%20States%20Senate%20election%20in%20Pennsylvania
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+PA%20SENATE%202028
+    - https://www.google.com/search?q=PA%20Secretary%20of%20State%20elections%20calendar%202028
+    - https://www.google.com/search?q=PA%20SENATE%202028%20official%20candidate%20list
+
+- WI GOVERNOR (2026)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20Wisconsin%20gubernatorial%20election
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+WI%20GOVERNOR%202026
+    - https://www.google.com/search?q=WI%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=WI%20GOVERNOR%202026%20official%20candidate%20list
+
+- NC HOUSE (2026), District 13
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20House%20of%20Representatives%20elections%20in%20North%20Carolina
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+NC%20HOUSE%202026%20district%2013
+    - https://www.google.com/search?q=NC%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=NC%20HOUSE%202026%20district%2013%20official%20candidate%20list

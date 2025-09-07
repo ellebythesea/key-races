@@ -1,0 +1,122 @@
+[
+  {
+    "race_id": "us-presidential",
+    "race": {
+      "id": "us-presidential",
+      "cycle": 2028,
+      "office": "PRESIDENT",
+      "state": "US",
+      "district": null,
+      "title": null,
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [],
+      "sources": {},
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+US%20PRESIDENT%202028",
+        "https://www.google.com/search?q=US%20Secretary%20of%20State%20elections%20calendar%202028",
+        "https://www.google.com/search?q=US%20PRESIDENT%202028%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": [
+      "Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/United%20States%20presidential%20election,%202028"
+    ]
+  },
+  {
+    "race_id": "az-senate",
+    "race": {
+      "id": "az-senate",
+      "cycle": 2026,
+      "office": "SENATE",
+      "state": "AZ",
+      "district": null,
+      "title": null,
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [],
+      "sources": {},
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+AZ%20SENATE%202026",
+        "https://www.google.com/search?q=AZ%20Secretary%20of%20State%20elections%20calendar%202026",
+        "https://www.google.com/search?q=AZ%20SENATE%202026%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": [
+      "Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20Senate%20election%20in%20Arizona"
+    ]
+  },
+  {
+    "race_id": "pa-senate",
+    "race": {
+      "id": "pa-senate",
+      "cycle": 2028,
+      "office": "SENATE",
+      "state": "PA",
+      "district": null,
+      "title": null,
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [],
+      "sources": {},
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+PA%20SENATE%202028",
+        "https://www.google.com/search?q=PA%20Secretary%20of%20State%20elections%20calendar%202028",
+        "https://www.google.com/search?q=PA%20SENATE%202028%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": [
+      "Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2028%20United%20States%20Senate%20election%20in%20Pennsylvania"
+    ]
+  },
+  {
+    "race_id": "wi-governor",
+    "race": {
+      "id": "wi-governor",
+      "cycle": 2026,
+      "office": "GOVERNOR",
+      "state": "WI",
+      "district": null,
+      "title": null,
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [],
+      "sources": {},
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+WI%20GOVERNOR%202026",
+        "https://www.google.com/search?q=WI%20Secretary%20of%20State%20elections%20calendar%202026",
+        "https://www.google.com/search?q=WI%20GOVERNOR%202026%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": [
+      "Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20Wisconsin%20gubernatorial%20election"
+    ]
+  },
+  {
+    "race_id": "nc-house-13",
+    "race": {
+      "id": "nc-house-13",
+      "cycle": 2026,
+      "office": "HOUSE",
+      "state": "NC",
+      "district": "13",
+      "title": null,
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [],
+      "sources": {},
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+NC%20HOUSE%202026%20district%2013",
+        "https://www.google.com/search?q=NC%20Secretary%20of%20State%20elections%20calendar%202026",
+        "https://www.google.com/search?q=NC%20HOUSE%202026%20district%2013%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": [
+      "Fetch failed: 403 Client Error: Forbidden for url: https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20House%20of%20Representatives%20elections%20in%20North%20Carolina"
+    ]
+  }
+]

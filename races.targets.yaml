@@ -1,0 +1,44 @@
+# Seed targets: edit and extend freely.
+# Each entry can specify a Wikipedia page by title (recommended) or URL.
+# cycle: numeric year of the election cycle
+
+- id: us-presidential
+  cycle: 2028
+  office: PRESIDENT
+  state: US
+  wikipedia:
+    title: United States presidential election, 2028
+
+- id: az-senate
+  cycle: 2026
+  office: SENATE
+  state: AZ
+  wikipedia:
+    title: 2026 United States Senate election in Arizona
+
+- id: pa-senate
+  cycle: 2028
+  office: SENATE
+  state: PA
+  wikipedia:
+    title: 2028 United States Senate election in Pennsylvania
+
+- id: wi-governor
+  cycle: 2026
+  office: GOVERNOR
+  state: WI
+  wikipedia:
+    title: 2026 Wisconsin gubernatorial election
+
+- id: nc-house-13
+  cycle: 2026
+  office: HOUSE
+  state: NC
+  district: 13
+  wikipedia:
+    title: 2026 United States House of Representatives elections in North Carolina
+
+# TIP: Add competitive House districts and statewide offices in swing states.
+# If a direct page for a district exists, prefer a specific title, e.g.:
+#   title: 2026 United States House of Representatives election in North Carolina's 13th congressional district
+
