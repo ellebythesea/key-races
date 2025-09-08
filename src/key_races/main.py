@@ -19,6 +19,146 @@ def load_yaml(path: str) -> Any:
         return yaml.safe_load(f)
 
 
+def _build_index_html(out_dir: Path) -> str:
+    reports = sorted(out_dir.glob("report-*.html"), reverse=True)
+    items = []
+    for p in reports:
+        items.append(f"<li><a href=\"{p.name}\">{p.name}</a></li>")
+    body = "\n".join(items) if items else "<li>No reports yet</li>"
+    return (
+        "<!DOCTYPE html><html lang=\"en\"><head>"
+        "<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+        "<title>Key Races Reports</title><link rel=\"stylesheet\" href=\"style.css\"></head><body>"
+        "<h1>Key Races Reports</h1><ul>" + body + "</ul></body></html>"
+    )
+
+
+def _default_css() -> str:
+    return (
+        "body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;max-width:860px;margin:2rem auto;padding:0 1rem;line-height:1.5}"
+        ".race{padding:1rem 0;border-top:1px solid #eee}"
+        "h1{font-size:1.75rem}"
+        "h2{font-size:1.2rem;margin-bottom:.25rem}"
+        ".meta{color:#444;margin:.1rem 0}"
+        ".notes{color:#555}"
+        ".errors{color:#a00}"
+    )
+
+
+def _merge_results(results):
+    """Merge duplicate race_ids, combining fields and preferring richer data."""
+    from .model import FetchResult
+
+    def richness(fr: "FetchResult") -> int:
+        r = fr.race
+        score = 0
+        score += 5 if r.election_date else 0
+        score += 3 if r.primary_date else 0
+        score += len(r.candidates) * 2
+        score += len(r.sources)
+        return score
+
+    def merge_two(a: "FetchResult", b: "FetchResult") -> "FetchResult":
+        r1, r2 = a.race, b.race
+        # Titles and dates
+        r1.title = r1.title or r2.title
+        r1.election_date = r1.election_date or r2.election_date
+        r1.primary_date = r1.primary_date or r2.primary_date
+        # Candidates: dedupe by lowercase name
+        seen = {c.name.lower(): c for c in r1.candidates}
+        for c in r2.candidates:
+            key = c.name.lower()
+            if key not in seen:
+                r1.candidates.append(c)
+        # Sources
+        r1.sources.update(r2.sources)
+        # Research links
+        existing = set(r1.research_links)
+        for link in b.race.research_links:
+            if link not in existing:
+                r1.research_links.append(link)
+                existing.add(link)
+        # Notes and errors (concat unique)
+        a.notes.extend(x for x in b.notes if x not in a.notes)
+        a.errors.extend(x for x in b.errors if x not in a.errors)
+        return a
+
+    merged = {}
+    for fr in results:
+        key = fr.race_id
+        if key in merged:
+            base = merged[key]
+            if richness(fr) > richness(base):
+                merged[key] = merge_two(fr, base)
+            else:
+                merged[key] = merge_two(base, fr)
+        else:
+            merged[key] = fr
+    return list(merged.values())
+
+
+def _auto_targets(cfg: dict) -> list:
+    from datetime import date, timedelta
+    filters = cfg.get("filters", {})
+    states = filters.get("states") or list(STATE_ABBR.keys())
+    offices = filters.get("offices") or ["PRESIDENT", "SENATE", "GOVERNOR", "HOUSE"]
+    lookahead = int(filters.get("lookahead_days", 400))
+    today = date.today()
+    end = today + timedelta(days=lookahead)
+    years = sorted({today.year, end.year})
+    targets = []
+    for yr in years:
+        for st in states:
+            for off in offices:
+                entry = {"id": f"{st}-{off.lower()}-{yr}", "cycle": yr, "office": off, "state": st}
+                targets.append(entry)
+    return targets
+
+
+def _importance_score(fr, cfg: dict) -> float:
+    office_weight = {"PRESIDENT": 100, "SENATE": 80, "GOVERNOR": 70, "HOUSE": 50, "STATE": 40}
+    w = office_weight.get(fr.race.office.upper(), 30)
+    pr_states = set((cfg.get("filters", {}).get("states") or []))
+    if fr.race.state in pr_states:
+        w += 20
+    notes = " ".join(fr.notes).lower()
+    if "toss" in notes:
+        w += 30
+    elif "lean" in notes:
+        w += 15
+    elif "likely" in notes:
+        w += 5
+    w += _date_proximity_bonus(fr.race)
+    return w
+
+
+def _date_proximity_bonus(race) -> float:
+    try:
+        def _parse(d: Optional[str]):
+            if not d:
+                return None
+            try:
+                return datetime.strptime(d, "%B %d, %Y")
+            except Exception:
+                try:
+                    return datetime.strptime(d, "%B %Y")
+                except Exception:
+                    return None
+        from datetime import datetime as DT
+        today = DT.utcnow()
+        dates = [_parse(race.primary_date), _parse(race.election_date)]
+        dates = [d for d in dates if d]
+        if dates:
+            soonest = min(dates)
+            days = max(0, (soonest - today).days)
+            return max(0.0, 30.0 - (days / 20.0))
+        else:
+            years_out = max(0, race.cycle - today.year)
+            return max(0.0, 20.0 - years_out * 10.0)
+    except Exception:
+        return 0.0
+
+
 def main():
     ap = argparse.ArgumentParser(description="Key Races Weekly Reporter")
     ap.add_argument("--config", default="config.yaml", help="Path to config.yaml")
