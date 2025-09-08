@@ -11,6 +11,7 @@ What’s Included
 - src/key_races: Python package with a pluggable scraper (Wikipedia to start), report builder, and SMTP email sender.
 - config.yaml: App configuration (recipients, SMTP, filters). Designed to read secrets from env vars.
 - races.targets.yaml: Seed list of high‑value races to track. Extend this over time.
+- races.curated.yaml: High‑stakes, hand‑curated entries (candidates, dates, contacts, why‑it‑matters) shown at top of the report.
 - .github/workflows/weekly.yml: GitHub Actions workflow to run weekly, publish a static site to GitHub (docs/), and email the report.
 - requirements.txt: Python dependencies.
 
@@ -36,6 +37,10 @@ Quick Start (Local)
 6) Generate a local static site (for GitHub Pages)
    - `python -m src.key_races.main --out-dir docs --write-json`
    - Open `docs/index.html` in a browser to view.
+
+Curated High‑Stakes Section
+
+- Edit `races.curated.yaml` to add rich, hand‑crafted entries (candidates, why it matters, dates, contacts). These render first under the heading “High‑Stakes Races (Sorted by State & Impact)”.
 
 GitHub Pages (Online Reports)
 

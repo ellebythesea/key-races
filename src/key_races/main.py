@@ -24,6 +24,7 @@ def main():
     ap.add_argument(
         "--targets", default="races.targets.yaml", help="Path to races.targets.yaml"
     )
+    ap.add_argument("--curated", default="races.curated.yaml", help="Optional curated YAML to include at top of report")
     ap.add_argument("--dry-run", action="store_true", help="Print instead of email")
     ap.add_argument("--out-dir", default=None, help="Write static report files to this directory (for GitHub Pages)")
     ap.add_argument("--no-html", action="store_true", help="Do not write HTML when --out-dir is set")
@@ -41,7 +42,15 @@ def main():
     provider = WikipediaProvider(delay_seconds=delay, max_pages=max_pages)
     results = provider.fetch_for_targets(targets)
 
-    report_text = format_text(results)
+    # Load curated (if file exists)
+    curated_data = []
+    try:
+        if args.curated and os.path.exists(args.curated):
+            curated_data = load_yaml(args.curated) or []
+    except Exception:
+        curated_data = []
+
+    report_text = format_text(results, curated=curated_data)
 
     # Optional static site output
     if args.out_dir:
@@ -55,7 +64,7 @@ def main():
             (out_dir / f"{base}.txt").write_text(report_text, encoding="utf-8")
 
         if not args.no_html:
-            html = format_html(results, title=f"Key Races Weekly Report — {ts}")
+            html = format_html(results, title=f"Key Races Weekly Report — {ts}", curated=curated_data)
             (out_dir / f"{base}.html").write_text(html, encoding="utf-8")
 
         if args.write_json:

@@ -8,6 +8,7 @@ from ..util import polite_sleep
 
 
 WIKI_REST = "https://en.wikipedia.org/api/rest_v1/page/html/{}"
+WIKI_PAGE = "https://en.wikipedia.org/wiki/{}"
 
 
 class WikipediaProvider:
@@ -40,18 +41,31 @@ class WikipediaProvider:
 
             try:
                 html = None
+                headers = {
+                    "User-Agent": "KeyRacesBot/1.0 (+https://github.com/ellebythesea/key-races)",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Cache-Control": "no-cache",
+                }
                 if title:
                     safe_title = title.replace(" ", "%20")
                     fetch_url = WIKI_REST.format(safe_title)
                 else:
                     fetch_url = url
-                resp = requests.get(fetch_url, timeout=20)
-                resp.raise_for_status()
+                # Try REST first
+                resp = requests.get(fetch_url, timeout=20, headers=headers)
+                try:
+                    resp.raise_for_status()
+                except Exception:
+                    # Fallback to standard page
+                    if title:
+                        fetch_url = WIKI_PAGE.format(safe_title)
+                        resp = requests.get(fetch_url, timeout=20, headers=headers)
+                        resp.raise_for_status()
                 html = resp.text
                 pages_fetched += 1
                 polite_sleep(self.delay_seconds)
                 self._parse_wikipedia_html(html, res)
-                # Capture the canonical page URL in sources
                 res.race.sources["wikipedia"] = fetch_url
             except Exception as e:
                 res.errors.append(f"Fetch failed: {e}")
@@ -182,4 +196,3 @@ class WikipediaProvider:
             f"https://www.google.com/search?q={requests.utils.quote(label + ' official candidate list')}"
         )
         return base
-

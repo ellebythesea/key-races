@@ -1,0 +1,86 @@
+# High-stakes races curated entries.
+# These appear at the top of the report exactly as written, then
+# scraped results follow. You can edit freely.
+
+- id: va-governor-2025
+  state: Virginia
+  office: Governor
+  cycle: 2025
+  candidates:
+    - name: Abigail Spanberger
+      party: D
+      website: https://abigailspanberger.com
+      email: info@abigailspanberger.com
+      phone: 804-223-0770
+      social:
+        instagram: https://www.instagram.com/abigailspanberger/
+        facebook: https://www.facebook.com/AbigailSpanbergerVA/
+    - name: Winsome Earle-Sears
+      party: R
+      website: https://winsomeforgovernor.com
+      email: info@winsomeforgovernor.com
+      phone: 804-223-0896
+      social:
+        instagram: https://www.instagram.com/winsomesears/
+        facebook: https://www.facebook.com/WinsomeSears/
+  why_it_matters:
+    - Off-year bellwether indicating broader political trends
+  dates:
+    general: November 4, 2025
+  early_voting:
+    note: Data pending; Virginia specifics not yet available
+
+- id: mi-governor-2026
+  state: Michigan
+  office: Governor
+  cycle: 2026
+  candidates:
+    - name: Jocelyn Benson
+      party: D
+    - name: Garlin Gilchrist
+      party: D
+    - name: Chris Swanson
+      party: I
+  why_it_matters:
+    - Open seat and key battleground; outcome may shift state control
+  dates:
+    general: November 3, 2026 (expected)
+  early_voting:
+    note: Date pending; often begins late September in MI
+  contact_note: To be gathered when campaigns go live; likely via campaign websites and state filings
+
+- id: nc-senate-2026
+  state: North Carolina
+  office: U.S. Senate
+  cycle: 2026
+  candidates:
+    - name: Roy Cooper
+      party: D
+  why_it_matters:
+    - Critical swing seat in the balance of Senate control
+  dates:
+    primary: March 3, 2026
+    general: November 3, 2026
+  early_voting:
+    note: Statewide practices vary by county; no universal early-voting schedule yet
+
+- id: ga-senate-2026
+  state: Georgia
+  office: U.S. Senate
+  cycle: 2026
+  candidates:
+    - name: Jon Ossoff
+      party: D (incumbent)
+      website: https://electjon.com
+      senate_office:
+        atlanta: 470-786-7800
+        dc: 202-224-3521
+      social:
+        instagram: https://www.instagram.com/senossoff/
+  why_it_matters:
+    - Democratic seat in a Trump-won state; key for Senate control
+  dates:
+    general: November 3, 2026
+  early_voting:
+    note: Not yet published; typically opens mid-October
+
