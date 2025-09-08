@@ -7,7 +7,8 @@ from pathlib import Path
 import yaml
 from typing import Any
 
-from .providers import WikipediaProvider
+from .providers import WikipediaProvider, BallotpediaProvider
+from .providers.ballotpedia import STATE_ABBR
 from .report import format_text, format_html
 from .emailer import send_email
 from .util import expand_env_vars
@@ -32,17 +33,32 @@ def main():
     ap.add_argument("--no-text", action="store_true", help="Do not write text when --out-dir is set")
     ap.add_argument("--write-json", action="store_true", help="Also write JSON when --out-dir is set")
     ap.add_argument("--include-empty", action="store_true", help="Include empty or errored scraped races in the report")
+    ap.add_argument("--providers", default="wikipedia", help="Comma-separated providers: wikipedia,ballotpedia, both")
+    ap.add_argument("--auto-targets", action="store_true", help="Generate targets automatically from config filters (no manual editing)")
     args = ap.parse_args()
 
     cfg = expand_env_vars(load_yaml(args.config)) or {}
-    targets = load_yaml(args.targets) or []
+    if args.auto_targets:
+        targets = _auto_targets(cfg)
+    else:
+        targets = load_yaml(args.targets) or []
 
     behavior = cfg.get("behavior", {})
     delay = float(behavior.get("request_delay_seconds", 1.0))
     max_pages = int(behavior.get("max_pages", 40))
+    prov_names = [p.strip().lower() for p in args.providers.split(",") if p.strip()]
+    results = []
+    if not prov_names:
+        prov_names = ["wikipedia"]
+    if "wikipedia" in prov_names:
+        provider = WikipediaProvider(delay_seconds=delay, max_pages=max_pages)
+        results.extend(provider.fetch_for_targets(targets))
+    if "ballotpedia" in prov_names:
+        bp = BallotpediaProvider(delay_seconds=delay, max_pages=max_pages)
+        results.extend(bp.fetch_for_targets(targets))
 
-    provider = WikipediaProvider(delay_seconds=delay, max_pages=max_pages)
-    results = provider.fetch_for_targets(targets)
+    # Merge duplicate race_ids (prefer ones with more data)
+    results = _merge_results(results)
 
     # Filter out errored/empty scraped races unless explicitly included
     if not args.include_empty:
@@ -52,6 +68,9 @@ def main():
             r = fr.race
             return bool(r.candidates or r.election_date or r.primary_date)
         results = [fr for fr in results if _keep(fr)]
+
+    # Sort by importance heuristic
+    results.sort(key=lambda fr: _importance_score(fr, cfg), reverse=True)
 
     # Load curated (if file exists)
     curated_data = []
@@ -171,3 +190,69 @@ def _default_css() -> str:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+def _auto_targets(cfg: dict) -> list:
+    from datetime import date, timedelta
+    filters = cfg.get("filters", {})
+    states = filters.get("states") or list(STATE_ABBR.keys())
+    offices = filters.get("offices") or ["PRESIDENT", "SENATE", "GOVERNOR", "HOUSE"]
+    lookahead = int(filters.get("lookahead_days", 400))
+    today = date.today()
+    end = today + timedelta(days=lookahead)
+    years = sorted({today.year, end.year})
+    targets = []
+    for yr in years:
+        for st in states:
+            for off in offices:
+                # Avoid generating all House districts; statewide aggregation only
+                entry = {"id": f"{st}-{off.lower()}-{yr}", "cycle": yr, "office": off, "state": st}
+                targets.append(entry)
+    return targets
+
+def _importance_score(fr, cfg: dict) -> float:
+    office_weight = {"PRESIDENT": 100, "SENATE": 80, "GOVERNOR": 70, "HOUSE": 50, "STATE": 40}
+    w = office_weight.get(fr.race.office.upper(), 30)
+    # Priority state boost
+    pr_states = set((cfg.get("filters", {}).get("states") or []))
+    if fr.race.state in pr_states:
+        w += 20
+    # Ratings boost from notes
+    notes = " ".join(fr.notes).lower()
+    if "toss" in notes:
+        w += 30
+    elif "lean" in notes:
+        w += 15
+    elif "likely" in notes:
+        w += 5
+    # Date proximity (rough)
+    w += _date_proximity_bonus(fr.race)
+    return w
+
+def _date_proximity_bonus(race) -> float:
+    # Simple heuristic based on cycle year if exact dates missing
+    try:
+        # If we have precise dates, weight nearer ones higher
+        def _parse(d: Optional[str]):
+            if not d:
+                return None
+            try:
+                return datetime.strptime(d, "%B %d, %Y")
+            except Exception:
+                try:
+                    return datetime.strptime(d, "%B %Y")
+                except Exception:
+                    return None
+        from datetime import datetime as DT, timedelta
+        today = DT.utcnow()
+        dates = [_parse(race.primary_date), _parse(race.election_date)]
+        dates = [d for d in dates if d]
+        if dates:
+            soonest = min(dates)
+            days = max(0, (soonest - today).days)
+            return max(0.0, 30.0 - (days / 20.0))  # decays over ~600 days
+        else:
+            # fallback to cycle proximity
+            years_out = max(0, race.cycle - today.year)
+            return max(0.0, 20.0 - years_out * 10.0)
+    except Exception:
+        return 0.0

@@ -26,11 +26,11 @@ jobs:
 
       - name: Run reporter (dry run to log)
         run: |
-          python -m src.key_races.main --dry-run
+          python -m src.key_races.main --providers wikipedia,ballotpedia --auto-targets --dry-run
 
       - name: Build static site into docs/
         run: |
-          python -m src.key_races.main --out-dir docs --write-json --no-email
+          python -m src.key_races.main --providers wikipedia,ballotpedia --auto-targets --out-dir docs --write-json --no-email
 
       - name: Generate concise report into docs/
         run: |
