@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 import yaml
-from typing import Any
+from typing import Any, Optional
 
 from .providers import WikipediaProvider, BallotpediaProvider
 from .providers.ballotpedia import STATE_ABBR

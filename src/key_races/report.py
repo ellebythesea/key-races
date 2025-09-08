@@ -1,9 +1,9 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from .model import FetchResult, Race
 
 
-def format_text(results: List[FetchResult], curated: List[Dict[str, Any]] | None = None) -> str:
+def format_text(results: List[FetchResult], curated: Optional[List[Dict[str, Any]]] = None) -> str:
     lines = []
     lines.append("Key Races Weekly Report\n")
     if curated:
@@ -54,7 +54,7 @@ def _race_text_block(race: Race, res: FetchResult) -> List[str]:
     return L
 
 
-def format_html(results: List[FetchResult], title: str = "Key Races Weekly Report", curated: List[Dict[str, Any]] | None = None) -> str:
+def format_html(results: List[FetchResult], title: str = "Key Races Weekly Report", curated: Optional[List[Dict[str, Any]]] = None) -> str:
     parts = []
     parts.append("<!DOCTYPE html>")
     parts.append("<html lang=\"en\">")
