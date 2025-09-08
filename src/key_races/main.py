@@ -188,9 +188,6 @@ def _default_css() -> str:
     )
 
 
-if __name__ == "__main__":
-    sys.exit(main())
-
 def _auto_targets(cfg: dict) -> list:
     from datetime import date, timedelta
     filters = cfg.get("filters", {})
@@ -256,3 +253,7 @@ def _date_proximity_bonus(race) -> float:
             return max(0.0, 20.0 - years_out * 10.0)
     except Exception:
         return 0.0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
