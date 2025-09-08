@@ -26,6 +26,7 @@ def main():
     )
     ap.add_argument("--curated", default="races.curated.yaml", help="Optional curated YAML to include at top of report")
     ap.add_argument("--dry-run", action="store_true", help="Print instead of email")
+    ap.add_argument("--no-email", action="store_true", help="Skip sending email even if recipients are configured")
     ap.add_argument("--out-dir", default=None, help="Write static report files to this directory (for GitHub Pages)")
     ap.add_argument("--no-html", action="store_true", help="Do not write HTML when --out-dir is set")
     ap.add_argument("--no-text", action="store_true", help="Do not write text when --out-dir is set")
@@ -105,6 +106,10 @@ def main():
         print(report_text)
         return 0
 
+    # If email explicitly disabled, exit successfully here
+    if args.no_email:
+        return 0
+
     recipients = cfg.get("recipients", [])
     # Allow override via env var RECIPIENTS
     env_recipients = os.getenv("RECIPIENTS")
@@ -112,8 +117,9 @@ def main():
         recipients = [x.strip() for x in env_recipients.split(",") if x.strip()]
 
     if not recipients:
-        print("No recipients configured. Set RECIPIENTS or config.yaml recipients.")
-        return 1
+        # No recipients configured. For site-only runs, this is not an error.
+        print("No recipients configured. Skipping email.")
+        return 0
 
     smtp_cfg = cfg.get("smtp", {})
     subject = "Key Races Weekly Report"

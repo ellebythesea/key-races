@@ -30,7 +30,7 @@ jobs:
 
       - name: Build static site into docs/
         run: |
-          python -m src.key_races.main --out-dir docs --write-json
+          python -m src.key_races.main --out-dir docs --write-json --no-email
 
       - name: Commit and push docs changes
         run: |
