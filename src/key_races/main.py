@@ -31,6 +31,7 @@ def main():
     ap.add_argument("--no-html", action="store_true", help="Do not write HTML when --out-dir is set")
     ap.add_argument("--no-text", action="store_true", help="Do not write text when --out-dir is set")
     ap.add_argument("--write-json", action="store_true", help="Also write JSON when --out-dir is set")
+    ap.add_argument("--include-empty", action="store_true", help="Include empty or errored scraped races in the report")
     args = ap.parse_args()
 
     cfg = expand_env_vars(load_yaml(args.config)) or {}
@@ -42,6 +43,15 @@ def main():
 
     provider = WikipediaProvider(delay_seconds=delay, max_pages=max_pages)
     results = provider.fetch_for_targets(targets)
+
+    # Filter out errored/empty scraped races unless explicitly included
+    if not args.include_empty:
+        def _keep(fr):
+            if fr.errors:
+                return False
+            r = fr.race
+            return bool(r.candidates or r.election_date or r.primary_date)
+        results = [fr for fr in results if _keep(fr)]
 
     # Load curated (if file exists)
     curated_data = []

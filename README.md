@@ -42,6 +42,11 @@ Curated High‑Stakes Section
 
 - Edit `races.curated.yaml` to add rich, hand‑crafted entries (candidates, why it matters, dates, contacts). These render first under the heading “High‑Stakes Races (Sorted by State & Impact)”.
 
+Filtering empty/errored scraped races
+
+- By default, any scraped race with errors (e.g., 403/404) or with no parsed candidates/dates is hidden from the report.
+- To see everything (including incomplete entries), pass `--include-empty` when running locally or in CI.
+
 GitHub Pages (Online Reports)
 
 1) Enable Pages: Settings → Pages → Build and deployment → Deploy from a branch → `main` → `/docs`.
