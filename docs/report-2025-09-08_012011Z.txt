@@ -1,0 +1,117 @@
+Key Races Weekly Report
+
+High-Stakes Races (Sorted by State & Impact)
+
+Virginia — Governor (2025)
+	•	Candidates:
+	•	Abigail Spanberger (D)
+	•	Winsome Earle-Sears (R)
+	•	Why It Matters:
+	•	Off-year bellwether indicating broader political trends
+	•	Election Dates:
+	•	General: November 4, 2025
+	•	Early Voting:
+	•	Data pending; Virginia specifics not yet available
+	•	Contact Info:
+	•	Abigail Spanberger:
+	•	Email: info@abigailspanberger.com
+	•	Phone: 804-223-0770
+	•	Website: https://abigailspanberger.com
+	•	Instagram: https://www.instagram.com/abigailspanberger/
+	•	Winsome Earle-Sears:
+	•	Email: info@winsomeforgovernor.com
+	•	Phone: 804-223-0896
+	•	Website: https://winsomeforgovernor.com
+	•	Instagram: https://www.instagram.com/winsomesears/
+
+Michigan — Governor (2026)
+	•	Candidates:
+	•	Jocelyn Benson (D)
+	•	Garlin Gilchrist (D)
+	•	Chris Swanson (I)
+	•	Why It Matters:
+	•	Open seat and key battleground; outcome may shift state control
+	•	Election Dates:
+	•	General: November 3, 2026 (expected)
+	•	Early Voting:
+	•	Date pending; often begins late September in MI
+	•	Contact Info:
+	•	To be gathered when campaigns go live; likely via campaign websites and state filings
+
+North Carolina — U.S. Senate (2026)
+	•	Candidates:
+	•	Roy Cooper (D)
+	•	Why It Matters:
+	•	Critical swing seat in the balance of Senate control
+	•	Election Dates:
+	•	General: November 3, 2026
+	•	Primary: March 3, 2026
+	•	Early Voting:
+	•	Statewide practices vary by county; no universal early-voting schedule yet
+
+Georgia — U.S. Senate (2026)
+	•	Candidates:
+	•	Jon Ossoff (D (incumbent))
+	•	Why It Matters:
+	•	Democratic seat in a Trump-won state; key for Senate control
+	•	Election Dates:
+	•	General: November 3, 2026
+	•	Early Voting:
+	•	Not yet published; typically opens mid-October
+	•	Contact Info:
+	•	Jon Ossoff:
+	•	Website: https://electjon.com
+	•	Instagram: https://www.instagram.com/senossoff/
+
+- US PRESIDENT (2028)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/United_States_presidential_election,_2028
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+US%20PRESIDENT%202028
+    - https://www.google.com/search?q=US%20Secretary%20of%20State%20elections%20calendar%202028
+    - https://www.google.com/search?q=US%20PRESIDENT%202028%20official%20candidate%20list
+
+- AZ SENATE (2026)
+  Candidates: Unknown (see research links)
+  Errors: Fetch failed: 404 Client Error: Not Found for url: https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Arizona
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+AZ%20SENATE%202026
+    - https://www.google.com/search?q=AZ%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=AZ%20SENATE%202026%20official%20candidate%20list
+
+- PA SENATE (2028)
+  Title: 2028 United States Senate elections
+  Candidates:
+    - TBD
+  Wikipedia: https://en.wikipedia.org/api/rest_v1/page/html/2028%20United%20States%20Senate%20election%20in%20Pennsylvania
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+PA%20SENATE%202028
+    - https://www.google.com/search?q=PA%20Secretary%20of%20State%20elections%20calendar%202028
+    - https://www.google.com/search?q=PA%20SENATE%202028%20official%20candidate%20list
+
+- WI GOVERNOR (2026)
+  Title: 2026 Wisconsin gubernatorial election
+  Candidates:
+    - Sara Rodriguez (2023–present)
+    - [7]
+    - [8]
+    - Sarah Godlewski (2023–present)
+    - [23]
+    - Washington County (2020–present)
+    - Wisconsin Department of Workforce Development
+  Wikipedia: https://en.wikipedia.org/api/rest_v1/page/html/2026%20Wisconsin%20gubernatorial%20election
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+WI%20GOVERNOR%202026
+    - https://www.google.com/search?q=WI%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=WI%20GOVERNOR%202026%20official%20candidate%20list
+
+- NC HOUSE (2026), District 13
+  Title: 2026 United States House of Representatives elections in North Carolina
+  Candidates:
+    - Dem
+    - Rep
+  Wikipedia: https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20House%20of%20Representatives%20elections%20in%20North%20Carolina
+  Research:
+    - https://www.google.com/search?q=Ballotpedia+NC%20HOUSE%202026%20district%2013
+    - https://www.google.com/search?q=NC%20Secretary%20of%20State%20elections%20calendar%202026
+    - https://www.google.com/search?q=NC%20HOUSE%202026%20district%2013%20official%20candidate%20list
