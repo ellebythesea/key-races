@@ -188,6 +188,58 @@ def _default_css() -> str:
     )
 
 
+def _merge_results(results):
+    """Merge duplicate race_ids, combining fields and preferring richer data."""
+    from .model import FetchResult, Candidate
+    def richness(fr: "FetchResult") -> int:
+        r = fr.race
+        score = 0
+        score += 5 if r.election_date else 0
+        score += 3 if r.primary_date else 0
+        score += len(r.candidates) * 2
+        score += len(r.sources)
+        return score
+
+    def merge_two(a: "FetchResult", b: "FetchResult") -> "FetchResult":
+        r1, r2 = a.race, b.race
+        # Titles and dates
+        r1.title = r1.title or r2.title
+        r1.election_date = r1.election_date or r2.election_date
+        r1.primary_date = r1.primary_date or r2.primary_date
+        # Candidates: dedupe by lowercase name
+        seen = {c.name.lower(): c for c in r1.candidates}
+        for c in r2.candidates:
+            key = c.name.lower()
+            if key not in seen:
+                r1.candidates.append(c)
+        # Sources
+        r1.sources.update(r2.sources)
+        # Research links
+        existing = set(r1.research_links)
+        for link in r2.research_links:
+            if link not in existing:
+                r1.research_links.append(link)
+                existing.add(link)
+        # Notes and errors (concat)
+        a.notes.extend(x for x in b.notes if x not in a.notes)
+        a.errors.extend(x for x in b.errors if x not in a.errors)
+        return a
+
+    merged = {}
+    for fr in results:
+        key = fr.race_id
+        if key in merged:
+            # Prefer richer one as base, then merge
+            base = merged[key]
+            if richness(fr) > richness(base):
+                merged[key] = merge_two(fr, base)
+            else:
+                merged[key] = merge_two(base, fr)
+        else:
+            merged[key] = fr
+    return list(merged.values())
+
+
 def _auto_targets(cfg: dict) -> list:
     from datetime import date, timedelta
     filters = cfg.get("filters", {})
