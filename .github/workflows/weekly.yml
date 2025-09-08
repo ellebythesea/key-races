@@ -34,7 +34,12 @@ jobs:
 
       - name: Generate concise report into docs/
         run: |
-          python generate_report.py --input races.json --output docs/report.html
+          # Prefer YAML-per-race inputs if present; fallback to JSON
+          if [ -d races ]; then
+            python generate_report.py --yaml-dir races --output docs/report.html
+          else
+            python generate_report.py --input races.json --output docs/report.html
+          fi
 
       - name: Commit and push docs changes
         run: |

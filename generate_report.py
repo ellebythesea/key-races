@@ -3,6 +3,9 @@ import datetime
 import html
 import json
 from pathlib import Path
+from typing import List, Dict
+
+import yaml
 
 TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
@@ -59,14 +62,33 @@ def main():
     parser = argparse.ArgumentParser(description="Generate Key Races HTML report")
     parser.add_argument("--input", default="races.json", help="Path to races.json")
     parser.add_argument(
+        "--yaml-dir",
+        default=None,
+        help="Directory containing per-race YAML files (*.yml|*.yaml)",
+    )
+    parser.add_argument(
         "--output",
         default="report.html",
         help="Output HTML file (e.g. report.html or docs/report.html)",
     )
     args = parser.parse_args()
 
-    with open(args.input, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    if args.yaml_dir:
+        data: List[Dict] = []
+        ydir = Path(args.yaml_dir)
+        files = sorted(list(ydir.glob("*.yml")) + list(ydir.glob("*.yaml")))
+        for fp in files:
+            doc = yaml.safe_load(fp.read_text(encoding="utf-8"))
+            if isinstance(doc, list):
+                data.extend(doc)
+            elif isinstance(doc, dict):
+                data.append(doc)
+            else:
+                # Skip unknown types
+                continue
+    else:
+        with open(args.input, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
     rows = "\n".join(render_row(e) for e in data)
     html_out = TEMPLATE.format(now=datetime.date.today().isoformat(), rows=rows)
