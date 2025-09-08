@@ -1,0 +1,137 @@
+[
+  {
+    "race_id": "pa-senate",
+    "race": {
+      "id": "pa-senate",
+      "cycle": 2028,
+      "office": "SENATE",
+      "state": "PA",
+      "district": null,
+      "title": "2028 United States Senate elections",
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [
+        {
+          "name": "TBD",
+          "party": null,
+          "website": null,
+          "contact": {}
+        }
+      ],
+      "sources": {
+        "wikipedia": "https://en.wikipedia.org/api/rest_v1/page/html/2028%20United%20States%20Senate%20election%20in%20Pennsylvania"
+      },
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+PA%20SENATE%202028",
+        "https://www.google.com/search?q=PA%20Secretary%20of%20State%20elections%20calendar%202028",
+        "https://www.google.com/search?q=PA%20SENATE%202028%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": []
+  },
+  {
+    "race_id": "wi-governor",
+    "race": {
+      "id": "wi-governor",
+      "cycle": 2026,
+      "office": "GOVERNOR",
+      "state": "WI",
+      "district": null,
+      "title": "2026 Wisconsin gubernatorial election",
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [
+        {
+          "name": "Sara Rodriguez",
+          "party": "2023\u2013present",
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "[7]",
+          "party": null,
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "[8]",
+          "party": null,
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "Sarah Godlewski",
+          "party": "2023\u2013present",
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "[23]",
+          "party": null,
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "Washington County",
+          "party": "2020\u2013present",
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "Wisconsin Department of Workforce Development",
+          "party": null,
+          "website": null,
+          "contact": {}
+        }
+      ],
+      "sources": {
+        "wikipedia": "https://en.wikipedia.org/api/rest_v1/page/html/2026%20Wisconsin%20gubernatorial%20election"
+      },
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+WI%20GOVERNOR%202026",
+        "https://www.google.com/search?q=WI%20Secretary%20of%20State%20elections%20calendar%202026",
+        "https://www.google.com/search?q=WI%20GOVERNOR%202026%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": []
+  },
+  {
+    "race_id": "nc-house-13",
+    "race": {
+      "id": "nc-house-13",
+      "cycle": 2026,
+      "office": "HOUSE",
+      "state": "NC",
+      "district": "13",
+      "title": "2026 United States House of Representatives elections in North Carolina",
+      "election_date": null,
+      "primary_date": null,
+      "candidates": [
+        {
+          "name": "Dem",
+          "party": null,
+          "website": null,
+          "contact": {}
+        },
+        {
+          "name": "Rep",
+          "party": null,
+          "website": null,
+          "contact": {}
+        }
+      ],
+      "sources": {
+        "wikipedia": "https://en.wikipedia.org/api/rest_v1/page/html/2026%20United%20States%20House%20of%20Representatives%20elections%20in%20North%20Carolina"
+      },
+      "research_links": [
+        "https://www.google.com/search?q=Ballotpedia+NC%20HOUSE%202026%20district%2013",
+        "https://www.google.com/search?q=NC%20Secretary%20of%20State%20elections%20calendar%202026",
+        "https://www.google.com/search?q=NC%20HOUSE%202026%20district%2013%20official%20candidate%20list"
+      ]
+    },
+    "notes": [],
+    "errors": []
+  }
+]
