@@ -1,0 +1,57 @@
+[
+  {
+    "race": "Virginia Governor 2025",
+    "jurisdiction": "VA",
+    "office": "Governor",
+    "candidates": "Abigail Spanberger D vs Winsome Earle Sears R",
+    "rating": "Lean D",
+    "why_it_matters": "Off year bellwether and turnout test before 2026",
+    "key_dates": "General Nov 4 2025",
+    "last_margin": "Governorship flips often in VA and margins are single digits",
+    "sources": [
+      "Ballotpedia VA Governor 2025",
+      "AP overview"
+    ]
+  },
+  {
+    "race": "Texas US Senate 2026",
+    "jurisdiction": "TX",
+    "office": "US Senate",
+    "candidates": "John Cornyn R vs Democratic nominee TBD primary Mar 3 2026",
+    "rating": "Likely R now but watch primary and Houston suburbs",
+    "why_it_matters": "Large electorate where small suburban swings can change statewide math",
+    "key_dates": "Primary Mar 3 2026, General Nov 3 2026",
+    "last_margin": "Cornyn won 2020 by single digits statewide",
+    "sources": [
+      "Ballotpedia TX Senate 2026",
+      "Wikipedia overview"
+    ]
+  },
+  {
+    "race": "Michigan Governor 2026",
+    "jurisdiction": "MI",
+    "office": "Governor",
+    "candidates": "Declared field evolving",
+    "rating": "Toss up to Lean D depending on nominees",
+    "why_it_matters": "Presidential battleground battleground down ballot coattails in 2026",
+    "key_dates": "General Nov 3 2026",
+    "last_margin": "Recent statewide races have been single digit",
+    "sources": [
+      "Ballotpedia MI elections 2026"
+    ]
+  },
+  {
+    "race": "US House Special Elections 119th Congress",
+    "jurisdiction": "US",
+    "office": "US House",
+    "candidates": "Varies by district",
+    "rating": "District specific",
+    "why_it_matters": "Low turnout specials can flip control with hundreds of votes",
+    "key_dates": "Rolling dates in 2025 and 2026",
+    "last_margin": "Several specials historically decided by under 2000 votes",
+    "sources": [
+      "Ballotpedia specials 119th Congress"
+    ]
+  }
+]
+

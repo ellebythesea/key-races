@@ -32,6 +32,10 @@ jobs:
         run: |
           python -m src.key_races.main --out-dir docs --write-json --no-email
 
+      - name: Generate concise report into docs/
+        run: |
+          python generate_report.py --input races.json --output docs/report.html
+
       - name: Commit and push docs changes
         run: |
           git config user.name "github-actions"
